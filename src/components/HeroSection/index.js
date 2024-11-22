@@ -74,7 +74,7 @@ const HeroSection = () => {
           <button className="homepagebtn animate-slide" onClick={handleButtonClick}>
             Explore Our Products
           </button>
-          <img ref={flowerRef} src={`${process.env.PUBLIC_URL}/images/flower.png`} alt="Flower" style={{ width: '450px', display: 'block', transition: 'transform 0.2s ease, opacity 0.5s ease' }} />
+          <img className="hero-image" ref={flowerRef} src={`${process.env.PUBLIC_URL}/images/flower.png`} alt="Flower" style={{ width: '450px', display: 'block', transition: 'transform 0.2s ease, opacity 0.5s ease' }} />
           <div className="fade-effect" />
         </div>
       </div>

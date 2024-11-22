@@ -64,3 +64,25 @@ export const FeatureDescription = styled.p`
   font-size: 16px;
   color: ${({ theme }) => theme.text_secondary};
 `;
+
+export const CloseButton = styled.div`
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: ${({ theme }) => theme.text_primary};
+    z-index: 100;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.1);
+        color: ${({ theme }) => theme.primary};
+    }
+
+    @media (max-width: 768px) {
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+    }
+`;

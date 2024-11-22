@@ -26,7 +26,15 @@ const Navbar = () => {
     e.preventDefault();
     const element = document.querySelector(`#${section}`);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const navbarHeight = 80;
+      const sectionPadding = 100;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight + sectionPadding;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 

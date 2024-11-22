@@ -13,6 +13,8 @@ align-items: center;
 padding-bottom:20px;
 opacity: 0;
 animation: slideFromBottom 1s ease-out forwards;
+padding-top: 100px;
+scroll-margin-top: 100px;
 `
 
 const Wrapper = styled.div`

@@ -9,6 +9,8 @@ export const Container = styled.div`
     position: relative;
     z-index: 1;
     align-items: center;
+    padding-top: 100px;
+    scroll-margin-top: 100px;
 `;
 
 export const Wrapper = styled.div`
@@ -62,4 +64,35 @@ export const CardContainer = styled.div`
     align-items: center;
     gap: 40px;
     flex-wrap: wrap;
+`;
+
+export const BackButton = styled.div`
+    position: fixed;
+    top: 100px;
+    right: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    color: ${({ theme }) => theme.text_primary};
+    padding: 10px 20px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+        transform: translateX(5px);
+        background: ${({ theme }) => theme.primary};
+        color: ${({ theme }) => theme.black};
+        border-color: transparent;
+    }
+
+    @media (max-width: 768px) {
+        top: 80px;
+        right: 20px;
+        padding: 8px 16px;
+    }
 `;
