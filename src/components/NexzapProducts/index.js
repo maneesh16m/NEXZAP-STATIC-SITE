@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { ProductsData } from '../../data/constants'
 import { Link } from 'react-router-dom'
-import MovingBanner from '../MovingBanner';
+
 const Container = styled.div`
 display: flex;
 flex-direction: column;
@@ -13,8 +13,8 @@ align-items: center;
 padding-bottom:20px;
 opacity: 0;
 animation: slideFromBottom 1s ease-out forwards;
-padding-top: 100px;
-scroll-margin-top: 100px;
+padding-top: 40px;
+scroll-margin-top: 40px;
 `
 
 const Wrapper = styled.div`
@@ -116,7 +116,6 @@ const ProductItem = styled.div`
 `
 
 const ProductButton = styled(Link)`
-  background-color: black;
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -133,10 +132,14 @@ const ProductButton = styled(Link)`
   left: 50%; // Add this line
   transform: translateX(-50%); // Add this line
   text-decoration: none;
-
+  background: rgba(255, 255, 255, 0.1);
+    color: ${({ theme }) => theme.text_primary};
   &:hover {
-    background-color: ${({ theme }) => theme.primary_hover};
-    transform: translateX(-50%) scale(1.05); // Modify this line
+    // background-color: ${({ theme }) => theme.primary_hover};
+    transform: translateX(-50%) scale(1.05);
+    background: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.black};
+    border-color: transparent;
   }
 
   @media (max-width: 768px) {
@@ -166,7 +169,7 @@ const Products = () => {
             </Product>
           ))}
         </ProductContainer>
-        <MovingBanner text="App Development • UI/UX Design • SaaS Products • Web Development • WALLET Gift Cards • TAGFLO RFID • PRIVATEBOT" />
+       
       </Wrapper>
     </Container>
   )

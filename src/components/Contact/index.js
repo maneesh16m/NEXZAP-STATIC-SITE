@@ -8,8 +8,8 @@ const Container = styled.div`
   position: relative;
   z-index: 1;
   align-items: center;
-  padding-top: 100px;
-  scroll-margin-top: 100px;
+  padding-top: 40px;
+  scroll-margin-top: 40px;
   @media (max-width: 960px) {
     padding: 0px;
   }

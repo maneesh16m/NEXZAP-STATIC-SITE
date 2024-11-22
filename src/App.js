@@ -13,6 +13,7 @@ import styled from "styled-components";
 import Wallet from "./pages/Wallet";
 import Privatebot from "./pages/Privatebot";
 import Tagflo from "./pages/Tagflo";
+import MovingBanner from "./components/MovingBanner";
 
 const Body = styled.div`
   background-color: #000000;
@@ -22,11 +23,6 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
 `
-
-// const Wrapper1 = styled.div`
-//   background: linear-gradient(38.73deg, rgba(201, 32, 184, 0) 50%);
-//   width: 100%;
-// `
 
 const Wrapper = styled.div`
   background-color: #000000;
@@ -70,6 +66,7 @@ function App() {
                 <Wrapper>
                   <Products />
                 </Wrapper>
+                <MovingBanner text="Software Development • AI Solutions • Custom Applications • Cloud Services • App Development • UI/UX Design • SaaS Products • Web Development • WALLET Gift Cards • TAGFLO RFID • PRIVATEBOT" />
                 <Wrapper2>
                   <NexzapServices openModal={openModal} setOpenModal={setOpenModal} />
                 </Wrapper2>

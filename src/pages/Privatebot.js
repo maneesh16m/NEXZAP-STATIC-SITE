@@ -15,6 +15,10 @@ import { BackButton } from '../components/NexzapServices/ServiceStyle';
 const Privatebot = () => {
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   return (
     <>
       <BackButton onClick={() => navigate(-1)}>

@@ -71,7 +71,11 @@ const HeroSection = () => {
               Building the future of technology
             </p>
           </div>
-          <button className="homepagebtn animate-slide" onClick={handleButtonClick}>
+          <button 
+            className="homepagebtn animate-slide" 
+            onClick={handleButtonClick}
+            style={{ userSelect: 'none' }}
+          >
             Explore Our Products
           </button>
           <img className="hero-image" ref={flowerRef} src={`${process.env.PUBLIC_URL}/images/flower.png`} alt="Flower" style={{ width: '450px', display: 'block', transition: 'transform 0.2s ease, opacity 0.5s ease' }} />

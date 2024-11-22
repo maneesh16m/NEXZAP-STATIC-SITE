@@ -9,8 +9,8 @@ export const Container = styled.div`
     position: relative;
     z-index: 1;
     align-items: center;
-    padding-top: 100px;
-    scroll-margin-top: 100px;
+    ppadding-top: 40px;
+    scroll-margin-top: 40px;
 `;
 
 export const Wrapper = styled.div`
@@ -84,7 +84,7 @@ export const BackButton = styled.div`
     border: 1px solid rgba(255, 255, 255, 0.1);
 
     &:hover {
-        transform: translateX(5px);
+        transform: translateY(-5px) scale(1.05);
         background: ${({ theme }) => theme.primary};
         color: ${({ theme }) => theme.black};
         border-color: transparent;

@@ -15,6 +15,11 @@ import { BackButton } from '../components/NexzapServices/ServiceStyle';
 const Tagflo = () => {
   const navigate = useNavigate();
 
+  // Add useEffect for smooth scroll on mount
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   return (
     <>
       <BackButton onClick={() => navigate(-1)}>

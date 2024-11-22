@@ -1,7 +1,7 @@
 import React from 'react'
 import { Nav, NavLink, NavbarContainer, NavLogo, NavItems, MobileIcon, MobileMenu, MobileLink } from './NavbarStyledComponent'
 import { FaBars } from 'react-icons/fa';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -15,36 +15,51 @@ const Navbar = () => {
     });
   };
 
-  const handleClick = (e, section) => {
+  const handleHomeClick = () => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(scrollToTop, 100);
+    } else {
+      scrollToTop();
+    }
     setIsOpen(false);
-    
-    if (section === 'home') {
+  };
+
+  const scrollToSection = (sectionId) => {
+    if (sectionId === 'home') {
       handleHomeClick();
       return;
     }
 
-    e.preventDefault();
-    const element = document.querySelector(`#${section}`);
-    if (element) {
-      const navbarHeight = 80;
-      const sectionPadding = 100;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navbarHeight + sectionPadding;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const handleHomeClick = () => {
-    if (location.pathname === '/') {
-      scrollToTop();
-    } else {
+    if (location.pathname !== '/') {
       navigate('/');
-      setTimeout(scrollToTop, 100);
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const navbarHeight = 67;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const navbarHeight = 67;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
     }
+    setIsOpen(false);
   };
 
   return (
@@ -57,17 +72,17 @@ const Navbar = () => {
           <FaBars />
         </MobileIcon>
         <NavItems>
-          <NavLink as={Link} to="/" onClick={(e) => handleClick(e, 'home')}>Home</NavLink>
-          <NavLink href="#products" onClick={(e) => handleClick(e, 'products')}>Products</NavLink>
-          <NavLink href="#services" onClick={(e) => handleClick(e, 'services')}>Services</NavLink>
-          <NavLink href="#contact" onClick={(e) => handleClick(e, 'contact')}>Contact</NavLink>
+          <NavLink onClick={() => scrollToSection('home')}>Home</NavLink>
+          <NavLink onClick={() => scrollToSection('products')}>Products</NavLink>
+          <NavLink onClick={() => scrollToSection('services')}>Services</NavLink>
+          <NavLink onClick={() => scrollToSection('contact')}>Contact</NavLink>
         </NavItems>
         {isOpen && (
           <MobileMenu isOpen={isOpen}>
-            <MobileLink as={Link} to="/" onClick={(e) => handleClick(e, 'home')}>Home</MobileLink>
-            <MobileLink href="#products" onClick={(e) => handleClick(e, 'products')}>Products</MobileLink>
-            <MobileLink href="#services" onClick={(e) => handleClick(e, 'services')}>Services</MobileLink>
-            <MobileLink href="#contact" onClick={(e) => handleClick(e, 'contact')}>Contact</MobileLink>
+            <MobileLink onClick={() => scrollToSection('home')}>Home</MobileLink>
+            <MobileLink onClick={() => scrollToSection('products')}>Products</MobileLink>
+            <MobileLink onClick={() => scrollToSection('services')}>Services</MobileLink>
+            <MobileLink onClick={() => scrollToSection('contact')}>Contact</MobileLink>
           </MobileMenu>
         )}
       </NavbarContainer>

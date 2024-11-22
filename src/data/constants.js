@@ -22,7 +22,7 @@ export const ProductsData  = [
     {
       id:1,
       title: "Support Service",
-      description: "Our dedicated support team provides round-the-clock assistance for our products, ensuring you get the help you need 24/7..",
+      description: "Our dedicated support team provides round-the-clock assistance for our products, ensuring you get the help you need 24/7.",
     },
     {
       id:2,

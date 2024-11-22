@@ -4,11 +4,17 @@ export const ProductPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 0;
+  padding: 60px 20px;
   background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text_primary};
-  min-height: calc(100vh - 160px); // Subtract navbar and footer height
-  justify-content: center; // Center content vertically
+  min-height: calc(100vh - 80px);
+  margin-top: 80px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: 40px 16px;
+    margin-top: 100px;
+  }
 `;
 
 export const ProductTitle = styled.h1`
@@ -85,4 +91,35 @@ export const CloseButton = styled.div`
         right: 10px;
         font-size: 20px;
     }
+`;
+
+export const BackButton = styled.div`
+  position: fixed;
+  top: 100px;
+  right: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  color: ${({ theme }) => theme.text_primary};
+  padding: 10px 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    transform: translateX(-5px);
+    background: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.black};
+    border-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    top: 80px;
+    right: 20px;
+    padding: 8px 16px;
+  }
 `;
