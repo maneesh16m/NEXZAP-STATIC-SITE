@@ -53,21 +53,18 @@
 .homepagebtn {
   padding: 15px 40px;
   border-radius: 0.8em;
-  background: white;
-  color: #4a00e0;
-  border: none;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   font-family: inherit;
-  overflow: hidden;
   font-size: 1.1rem;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   margin-top: 30px;
-  user-select: none;
   position: relative;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .homepagebtn::before {
@@ -75,26 +72,27 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease;
-}
-
-.homepagebtn:hover::before {
-  width: 100%;
+  width: 150%;
+  height: 150%;
+  background: #000000;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
 }
 
 .homepagebtn:hover {
-  background: linear-gradient(to right, #8e2de2, #4a00e0);
-  color: ghostwhite;
+  color: #ffffff;
   transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.homepagebtn:hover::before {
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .homepagebtn:active {
-  background: #dddddd;
   transform: translateY(0);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes slideFromBottom {
