@@ -64,9 +64,26 @@
   transition: all 0.3s ease;
   margin-top: 30px;
   user-select: none;
-  -webkit-user-select: none;  /* Safari */
-  -moz-user-select: none;     /* Firefox */
-  -ms-user-select: none;      /* IE10+/Edge */
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.homepagebtn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease;
+}
+
+.homepagebtn:hover::before {
+  width: 100%;
 }
 
 .homepagebtn:hover {

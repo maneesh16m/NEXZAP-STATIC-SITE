@@ -101,6 +101,7 @@ const ContactButton = styled.input`
   color: #000000;
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 const Contact = () => {

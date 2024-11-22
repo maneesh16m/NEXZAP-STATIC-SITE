@@ -14,6 +14,7 @@ import Wallet from "./pages/Wallet";
 import Privatebot from "./pages/Privatebot";
 import Tagflo from "./pages/Tagflo";
 import MovingBanner from "./components/MovingBanner";
+import ScrollProgress from './components/ScrollProgress';
 
 const Body = styled.div`
   background-color: #000000;
@@ -58,6 +59,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <Router>
         <Body>
+          <ScrollProgress />
           <Navbar />
           <Routes>
             <Route path="/" element={
