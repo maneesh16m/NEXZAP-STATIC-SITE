@@ -1,0 +1,168 @@
+.hero-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 55px;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.hero-text {
+  color: #ffffff;
+  margin-bottom: 30px;
+  margin-top: 50px;
+  font-family: 'Good Times', sans-serif;
+
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: "nasalization", sans-serif;
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+  margin-top: -12px;
+  opacity: 0.9;
+  font-family: "nasalization", sans-serif;
+  position: relative;
+}
+
+.homepagebtn {
+  padding: 15px 40px;
+  border-radius: 0.8em;
+  background: white;
+  color: #4a00e0;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  overflow: hidden;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 30px;
+}
+
+.homepagebtn:hover {
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  color: ghostwhite;
+  transform: translateY(-2px);
+}
+
+.homepagebtn:active {
+  background: #dddddd;
+  transform: translateY(0);
+}
+
+@keyframes slideFromBottom {
+  0% {
+    transform: translateY(45px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes spinAndZoom {
+  0% {
+    transform: rotate(0deg) scale(0.8); /* Start slightly smaller */
+  }
+  100% {
+    transform: rotate(15deg) scale(1); /* Spin to 15 degrees instead of 45 degrees */
+  }
+}
+
+@keyframes spinOnScroll {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg); /* Full spin on scroll */
+  }
+}
+
+.animate-slide {
+  opacity: 0;
+  animation: slideFromBottom 0.5s ease-out forwards;
+}
+
+.animate-slide.title,
+.animate-slide.description,
+.animate-slide.homepagebtn {
+  animation-delay: 0s;
+}
+
+.section-animate {
+  opacity: 0;
+  animation: slideFromBottom 1s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.section-animate.animate {
+  animation-play-state: running;
+}
+
+.fade-effect {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Adjust height as needed */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.9) 100%);
+  margin-top: -200px; /* Decrease this value to reduce the gap */
+  z-index: 1; /* Ensure it appears above the background */
+  filter: blur(5px); /* Add blur effect */
+}
+
+img {
+  margin: 20px auto;
+  animation: spinAndZoom 3s ease-out forwards; /* Spin and zoom on page load */
+  opacity: 0; /* Start hidden */
+}
+
+img.scrolling {
+  animation: spinOnScroll 1s linear infinite; /* Spin while scrolling */
+  opacity: 1; /* Ensure the image is visible when scrolling */
+}
+
+.title-word {
+  margin-right: 10px; /* Adjust this value for desired spacing */
+}
+
+.animate-slide.title {
+  animation-delay: 0.2s;
+}
+
+.animate-slide.description {
+  animation: slideFromBottom 0.5s ease-out forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+  display: block;
+}
+
+.animate-slide.homepagebtn {
+  animation-delay: 0.6s;
+}
+
