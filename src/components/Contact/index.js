@@ -109,7 +109,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const mailtoUrl = `mailto:nexzaptest@gmail.com?subject=Contact Message&body=${message}`;
+    const mailtoUrl = `mailto:admin@nexzap.com?subject=Contact Message&body=${message}`;
     window.location.href = mailtoUrl;
   };
 
