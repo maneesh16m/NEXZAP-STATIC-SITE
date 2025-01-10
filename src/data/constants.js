@@ -11,7 +11,7 @@ export const ProductsData  = [
   },
   {
     title: "TAGFLO",
-    description:"TAGFLO, is a comprehensive tracking tool for businesses that need to manage and monitor their valuable assets. TAGFLO, ensures accountability through item verification, PIN-based access.",
+    description:"TAGFLO, is a comprehensive tracking tool for businesses that need to manage and monitor their valuable assets. TAGFLO, ensures accountability through item verification, PIN-based access, and an admin portal to manage the users.",
     href: "/tagflo"
   },
 ];
