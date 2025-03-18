@@ -1,7 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import { useState, useEffect } from "react";
 import { darkTheme } from './utils/Themes.js'
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/index.js";
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HeroSection from "./components/HeroSection";
@@ -15,7 +15,7 @@ import Privatebot from "./pages/Privatebot";
 import Tagflo from "./pages/Tagflo";
 import MovingBanner from "./components/MovingBanner";
 import ScrollProgress from './components/ScrollProgress';
-
+import Partners from "./components/Partners/index.js";
 const Body = styled.div`
   background-color: #000000;
   width: 100%;
@@ -72,6 +72,9 @@ function App() {
                 <Wrapper2>
                   <NexzapServices openModal={openModal} setOpenModal={setOpenModal} />
                 </Wrapper2>
+                <Wrapper>
+                  <Partners/>
+                </Wrapper>
                 <Wrapper>
                   <Contact />
                 </Wrapper>
