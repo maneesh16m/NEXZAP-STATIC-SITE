@@ -28,6 +28,8 @@ const PartnersGrid = styled.div`
   max-width: 1200px;
   justify-content: center;
   margin: 0 auto;
+  border-radius: 10px;
+  border: 0.1px solid #854CE6;
 `;
 
 const PartnerCard = styled.div`
@@ -50,6 +52,7 @@ const PartnerName = styled.h3`
   font-size: 24px;
   margin-bottom: 10px;
   text-align: center;
+  border: 0.1px solidrgb(13, 8, 20);
 `;
 
 const PartnerLink = styled.a`
