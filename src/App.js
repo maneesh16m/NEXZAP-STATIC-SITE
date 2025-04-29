@@ -16,6 +16,7 @@ import Tagflo from "./pages/Tagflo";
 import MovingBanner from "./components/MovingBanner";
 import ScrollProgress from './components/ScrollProgress';
 import Partners from "./components/Partners/index.js";
+import CompanyRegistration from "./components/CompanyRegistration/index.js";
 const Body = styled.div`
   background-color: #000000;
   width: 100%;
@@ -74,6 +75,9 @@ function App() {
                 </Wrapper2>
                 <Wrapper>
                   <Partners/>
+                </Wrapper>
+                <Wrapper>
+                  <CompanyRegistration />
                 </Wrapper>
                 <Wrapper>
                   <Contact />
