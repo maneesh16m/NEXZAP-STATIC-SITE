@@ -75,7 +75,7 @@ const partners = [
 const Partners = () => {
   return (
     <Container>
-      <Title>Our Partners</Title>
+      <Title>Trusted clients</Title>
       <PartnersGrid count={partners.length}>
         {partners.map((partner, index) => (
           <PartnerCard key={index}>
