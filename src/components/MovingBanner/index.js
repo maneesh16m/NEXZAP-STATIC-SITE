@@ -11,7 +11,7 @@ const BannerContainer = styled.div`
   border-radius: 20px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border: 0.1px solid #854CE6;
+  border: 0.1px solid ${({ theme }) => theme.text_secondary};
 
   &::before,
   &::after {

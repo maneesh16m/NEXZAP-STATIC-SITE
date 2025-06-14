@@ -29,7 +29,7 @@ const PartnersGrid = styled.div`
   justify-content: center;
   margin: 0 auto;
   border-radius: 10px;
-  border: 0.1px solid #854CE6;
+  border: 0.1px solid ${({ theme }) => theme.text_secondary};
 `;
 
 const PartnerCard = styled.div`

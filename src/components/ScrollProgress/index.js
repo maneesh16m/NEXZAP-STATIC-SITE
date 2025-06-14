@@ -7,7 +7,12 @@ const ProgressBar = styled(motion.div)`
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(to right, #854CE6, #4a00e0);
+  background: linear-gradient(
+    to right,
+    ${({ theme }) => theme.text_secondary}40 0%,
+    ${({ theme }) => theme.text_secondary} 50%,
+    ${({ theme }) => theme.text_secondary}40 100%
+  );
   transform-origin: 0%;
   z-index: 1000;
 `;

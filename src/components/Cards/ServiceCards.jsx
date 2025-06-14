@@ -25,7 +25,7 @@ const Card = styled.div`
     padding: 26px;
     display: flex;
     flex-direction: column;
-    border: 0.1px solid #854CE6;
+    border: 0.1px solid ${({ theme }) => theme.text_secondary};
     margin: 20px;
     gap: 14px;
     transition: all 0.5s ease-in-out;

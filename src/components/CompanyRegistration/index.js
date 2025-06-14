@@ -21,7 +21,7 @@ const Container = styled.div`
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(to right, transparent, #854CE6, transparent);
+    background: linear-gradient(to right, transparent, ${({ theme }) => theme.text_secondary}, transparent);
   }
 
   &::after {
@@ -31,7 +31,7 @@ const Container = styled.div`
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(to right, transparent, #854CE6, transparent);
+    background: linear-gradient(to right, transparent, ${({ theme }) => theme.text_secondary}, transparent);
   }
 `;
 
@@ -52,7 +52,7 @@ const Title = styled(motion.h2)`
     transform: translateX(-50%);
     width: 100px;
     height: 3px;
-    background: linear-gradient(to right, transparent, #854CE6, transparent);
+    background: linear-gradient(to right, transparent, ${({ theme }) => theme.text_secondary}, transparent);
   }
 
   @media (max-width: 768px) {
@@ -78,7 +78,7 @@ const RegistrationCard = styled(motion.div)`
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  border: 0.1px solid #854CE6;
+  border: 0.1px solid ${({ theme }) => theme.text_secondary};
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -90,14 +90,14 @@ const RegistrationCard = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(133, 76, 230, 0.1), transparent);
+    background: linear-gradient(45deg, transparent, ${({ theme }) => theme.text_secondary}20, transparent);
     transform: translateX(-100%);
     transition: transform 0.6s ease;
   }
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 12px 40px rgba(133, 76, 230, 0.2);
+    box-shadow: 0 12px 40px ${({ theme }) => theme.text_secondary}20;
   }
 
   &:hover::before {
@@ -127,7 +127,7 @@ const CardContent = styled.p`
 
 const IconWrapper = styled.div`
   font-size: 24px;
-  color: #854CE6;
+  color: #C0C0C0;
   margin-bottom: 15px;
   display: flex;
   justify-content: center;
