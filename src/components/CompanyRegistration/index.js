@@ -2,6 +2,34 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaBuilding, FaGlobe } from 'react-icons/fa';
+import DottedMap from 'dotted-map';
+
+// --- Dotted Map SVG as background ---
+const DOT_COLOR = '#C0C0C0';
+const RED = '#E53935';
+const map = new DottedMap({
+  height: 120,
+  grid: 'vertical',
+  dotSize: 0.08,
+});
+map.addPin({
+  lat: 18.1124,
+  lng: 79.0193,
+  svgOptions: { color: RED, radius: 0.64 },
+});
+map.addPin({
+  lat: -37.8136,
+  lng: 144.9631,
+  svgOptions: { color: RED, radius: 0.64 },
+});
+const svgString = map.getSVG({
+  radius: 0.08,
+  color: DOT_COLOR,
+  shape: 'circle',
+  background: 'transparent',
+});
+const svgDataUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(svgString)}')`;
+// --- End Dotted Map SVG ---
 
 const Container = styled.div`
   display: flex;
@@ -13,7 +41,11 @@ const Container = styled.div`
   width: 100%;
   position: relative;
   overflow: hidden;
-
+  background-image: ${svgDataUrl};
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 700px;
   &::before {
     content: '';
     position: absolute;
@@ -23,7 +55,6 @@ const Container = styled.div`
     height: 1px;
     background: linear-gradient(to right, transparent, ${({ theme }) => theme.text_secondary}, transparent);
   }
-
   &::after {
     content: '';
     position: absolute;
@@ -62,7 +93,7 @@ const Title = styled(motion.h2)`
 
 const RegistrationGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 40px;
   width: 80%;
   max-width: 1200px;
@@ -74,11 +105,11 @@ const RegistrationGrid = styled.div`
 `;
 
 const RegistrationCard = styled(motion.div)`
-  background: ${({ theme }) => theme.card};
+  background: ${({ theme }) => theme.card}80;
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  border: 0.1px solid ${({ theme }) => theme.text_secondary};
+  /* border: 0.1px solid ${({ theme }) => theme.text_secondary}; */
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -158,13 +189,6 @@ const CompanyRegistration = () => {
 
   return (
     <Container id="registration">
-      <Title
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Company Registration
-      </Title>
       <RegistrationGrid
         as={motion.div}
         variants={containerVariants}
@@ -178,9 +202,9 @@ const CompanyRegistration = () => {
           </IconWrapper>
           <CardTitle>India</CardTitle>
           <CardContent>
-            Founded in 2025, INSTAISE TECHNOLOGIES PTY LTD.
-            <br />
-            CIN: U72100TS2025PTC193828
+            Instaise Technologies<br />
+            Addr: D.no 1-8-6/1/A Metpally Town 2, Metpally, Jagityal District, Telangana, India, 505325<br />
+            Corporate Identity Number: U72100TS2025PTC193828
           </CardContent>
         </RegistrationCard>
         <RegistrationCard variants={cardVariants}>
@@ -189,7 +213,8 @@ const CompanyRegistration = () => {
           </IconWrapper>
           <CardTitle>Australia</CardTitle>
           <CardContent>
-          Founded in 2024, NEXZAP SOLUTIONS PTY LTD.
+            Nexzap Solutions<br />
+            ABN: 40 682 721 811
           </CardContent>
         </RegistrationCard>
       </RegistrationGrid>
