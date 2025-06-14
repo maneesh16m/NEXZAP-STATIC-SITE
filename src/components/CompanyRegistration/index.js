@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaBuilding, FaGlobe } from 'react-icons/fa';
 import DottedMap from 'dotted-map';
@@ -8,19 +8,19 @@ import DottedMap from 'dotted-map';
 const DOT_COLOR = '#C0C0C0';
 const RED = '#E53935';
 const map = new DottedMap({
-  height: 120,
+  height: 200,
   grid: 'vertical',
   dotSize: 0.08,
 });
 map.addPin({
   lat: 18.1124,
   lng: 79.0193,
-  svgOptions: { color: RED, radius: 0.64 },
+  svgOptions: { color: RED, radius: 1.28 },
 });
 map.addPin({
   lat: -37.8136,
   lng: 144.9631,
-  svgOptions: { color: RED, radius: 0.64 },
+  svgOptions: { color: RED, radius: 1.28 },
 });
 const svgString = map.getSVG({
   radius: 0.08,
@@ -30,6 +30,27 @@ const svgString = map.getSVG({
 });
 const svgDataUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(svgString)}')`;
 // --- End Dotted Map SVG ---
+
+// Animation for sliding the map horizontally
+const slide = keyframes`
+  0% { background-position-x: 0; }
+  100% { background-position-x: -900px; }
+`;
+
+const MapBackground = styled.div`
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background-image: ${svgDataUrl};
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-position: left top;
+  opacity: 0.7;
+  animation: ${slide} 40s linear infinite;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -41,10 +62,6 @@ const Container = styled.div`
   width: 100%;
   position: relative;
   overflow: hidden;
-  background-image: ${svgDataUrl};
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   min-height: 700px;
   &::before {
     content: '';
@@ -189,6 +206,7 @@ const CompanyRegistration = () => {
 
   return (
     <Container id="registration">
+      <MapBackground />
       <RegistrationGrid
         as={motion.div}
         variants={containerVariants}
