@@ -59,15 +59,25 @@ const HeroSection = () => {
     }
   };
 
+  // Add a silver gradient style
+  const silverGradient = {
+    background: 'linear-gradient(90deg, #e0e0e0 0%, #b0b0b0 50%, #f8f8f8 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    color: 'transparent',
+    fontWeight: 700,
+  };
+
   return (
     <div className="hero-container">
       <div className="hero-background">
         <div className="hero-content">
           <div className="hero-text">
-            <h1 className="animate-slide title" style={{ wordSpacing: '10px' }}>
+            <h1 className="animate-slide title" style={{ wordSpacing: '10px', ...silverGradient }}>
               Innovative Software Solutions
             </h1>
-            <p className="btn-shine animate-slide description" style={{ wordSpacing: '8px' }}>
+            <p className="btn-shine animate-slide description" style={{ wordSpacing: '8px', ...silverGradient }}>
               Building the future of technology
             </p>
           </div>

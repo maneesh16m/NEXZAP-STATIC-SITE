@@ -6,12 +6,12 @@ export const ProductsData  = [
   },
   {
     title: "PRIVATEBOT",
-    description:"A cutting-edge, LLM-based model designed to help companies organize and retrieve information efficiently. With PRIVATEBOT, businesses can leverage AI for intelligent document search and processing.",
+    description:"A cutting-edge, LLM-based model designed to help companies organize and retrieve information efficiently. With PRIVATEBOT, businesses can leverage AI for intelligent internal document search and processing.",
     href: "/privatebot"
   },
   {
     title: "TAGFLO",
-    description:"TAGFLO, is a comprehensive tracking tool for businesses that need to manage and monitor their valuable assets. TAGFLO, ensures accountability through item verification, PIN-based access, and an admin portal to manage the users.",
+    description:"TAGFLO, is a comprehensive tracking tool for businesses that need to manage and monitor their valuable assets. TAGFLO, ensures accountability through item verification, PIN-based access, and an admin portal to manage the inventory.",
     href: "/tagflo"
   },
 ];
@@ -26,7 +26,7 @@ export const ProductsData  = [
     },
     {
       id:2,
-      title: "Application Development",
+      title: "Software Development",
       description: "We specialize in creating tailored software applications that meet your business's unique needs. From automation to full-scale platforms, we deliver innovative solutions that scale with your growth.",
     },
     
