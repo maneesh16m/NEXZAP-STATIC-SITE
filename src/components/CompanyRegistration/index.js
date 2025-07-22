@@ -220,8 +220,8 @@ const CompanyRegistration = () => {
           </IconWrapper>
           <CardTitle>India</CardTitle>
           <CardContent>
-            Instaise Technologies<br />
-            Addr: D.no 1-8-6/1/A Metpally Town 2, Metpally, Jagityal District, Telangana, India, 505325<br />
+            Instaise Technologies Pvt Ltd<br />
+            Addr: D.no 1-8-6/1/A, Metpally, Jagityal District, Telangana, India, 505325<br />
             Corporate Identity Number: U72100TS2025PTC193828
           </CardContent>
         </RegistrationCard>
@@ -231,7 +231,7 @@ const CompanyRegistration = () => {
           </IconWrapper>
           <CardTitle>Australia</CardTitle>
           <CardContent>
-            Nexzap Solutions<br />
+            Nexzap Solutions Pty Ltd<br />
             ABN: 40 682 721 811
           </CardContent>
         </RegistrationCard>
