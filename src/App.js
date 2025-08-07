@@ -15,7 +15,9 @@ import Privatebot from "./pages/Privatebot";
 import Tagflo from "./pages/Tagflo";
 import MovingBanner from "./components/MovingBanner";
 import ScrollProgress from './components/ScrollProgress';
+import Partners from "./components/Partners/index.js";
 import CompanyRegistration from "./components/CompanyRegistration/index.js";
+import TrustedClients from "./components/TrustedClients/index.js";
 
 const Body = styled.div`
   background-color: #000000;
@@ -73,6 +75,9 @@ function App() {
                 <Wrapper2>
                   <NexzapServices openModal={openModal} setOpenModal={setOpenModal} />
                 </Wrapper2>
+                <Wrapper>
+                  <TrustedClients />
+                </Wrapper>
                 <Wrapper>
                   <CompanyRegistration />
                 </Wrapper>
