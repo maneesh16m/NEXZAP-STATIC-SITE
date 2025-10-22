@@ -104,6 +104,7 @@ const ContactButton = styled.input`
   cursor: pointer;
 `;
 
+
 const Contact = () => {
   const [message, setMessage] = useState('');
 
