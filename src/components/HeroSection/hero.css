@@ -159,6 +159,7 @@
   margin: 20px auto;
   animation: spinAndZoom 3s ease-out forwards;
   opacity: 0;
+  will-change: transform, opacity;
 }
 
 .hero-image.scrolling {
