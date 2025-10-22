@@ -1,38 +1,53 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import './hero.css';
 
 const HeroSection = () => {
   const flowerRef = useRef(null);
   const rotationRef = useRef(0);
   const lastScrollY = useRef(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    if (flowerRef.current) {
-      const scrollDirection = scrollY - lastScrollY.current;
-      rotationRef.current += scrollDirection * 0.1;
-      flowerRef.current.style.transform = `rotate(${rotationRef.current}deg) translateY(${scrollY * 0.05}px) scale(1)`;
-      
-      flowerRef.current.style.animation = 'none';
-      
-      const maxScroll = 600;
-      const opacity = Math.max(0, 1 - scrollY / maxScroll);
-      flowerRef.current.style.opacity = opacity;
+  // Optimize scroll handler with requestAnimationFrame
+  const handleScroll = useCallback(() => {
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      if (flowerRef.current && imageLoaded) {
+        const scrollDirection = scrollY - lastScrollY.current;
+        rotationRef.current += scrollDirection * 0.1;
+        flowerRef.current.style.transform = `rotate(${rotationRef.current}deg) translateY(${scrollY * 0.05}px) scale(1)`;
+        
+        flowerRef.current.style.animation = 'none';
+        
+        const maxScroll = 600;
+        const opacity = Math.max(0, 1 - scrollY / maxScroll);
+        flowerRef.current.style.opacity = opacity;
 
-      if (scrollY > 0) {
-        flowerRef.current.classList.add('scrolling');
-      } else {
-        flowerRef.current.classList.remove('scrolling');
+        if (scrollY > 0) {
+          flowerRef.current.classList.add('scrolling');
+        } else {
+          flowerRef.current.classList.remove('scrolling');
+        }
+
+        lastScrollY.current = scrollY;
       }
-
-      lastScrollY.current = scrollY;
-    }
-  };
+    });
+  }, [imageLoaded]);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
+  useEffect(() => {
+    // Load the flower image after a short delay to show loading state
+    const timer = setTimeout(() => {
+      setImageLoaded(true);
+    }, 500); // Load after 0.5 seconds
+
+    return () => {
+      clearTimeout(timer);
     };
   }, []);
 
@@ -50,7 +65,7 @@ const HeroSection = () => {
     return () => {
       clearTimeout(timer); // Cleanup the timer
     };
-  }, []);
+  }, [imageLoaded]);
 
   const handleButtonClick = () => {
     const productsSection = document.getElementById('products');
@@ -88,7 +103,50 @@ const HeroSection = () => {
           >
             Explore Our Products
           </button>
-          <img className="hero-image" ref={flowerRef} src={`${process.env.PUBLIC_URL}/images/flower.png`} alt="Flower" style={{ width: '450px', display: 'block', transition: 'transform 0.2s ease, opacity 0.5s ease' }} />
+          <div style={{ 
+            width: '450px', 
+            height: '450px', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            margin: '20px auto',
+            position: 'relative'
+          }}>
+            {/* Loading text without background */}
+            {!imageLoaded && (
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                color: 'white',
+                fontSize: '16px',
+                opacity: 0.8
+              }}>
+                Loading flower...
+              </div>
+            )}
+            
+            {/* Actual flower image - loaded after page is ready */}
+            {imageLoaded && (
+              <img 
+                className="hero-image" 
+                ref={flowerRef} 
+                src={`${process.env.PUBLIC_URL}/images/flower.png`} 
+                alt="Flower" 
+                style={{ 
+                  width: '450px', 
+                  height: '450px',
+                  display: 'block',
+                  transition: 'transform 0.2s ease, opacity 0.5s ease',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0
+                }}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+          </div>
           <div className="fade-effect" />
         </div>
       </div>

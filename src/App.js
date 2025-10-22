@@ -4,20 +4,23 @@ import { darkTheme } from './utils/Themes.js'
 import Navbar from "./components/Navbar/index.js";
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HeroSection from "./components/HeroSection";
-import Products  from "./components/NexzapProducts/index.js";
-import NexzapServices from "./components/NexzapServices/index.js";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
 import styled from "styled-components";
+
+// Import all components directly for immediate loading
+import HeroSection from "./components/HeroSection";
+import Products from "./components/NexzapProducts/index.js";
+import NexzapServices from "./components/NexzapServices/index.js";
+import Footer from "./components/Footer";
 import Wallet from "./pages/Wallet";
 import Privatebot from "./pages/Privatebot";
 import Tagflo from "./pages/Tagflo";
 import MovingBanner from "./components/MovingBanner";
 import ScrollProgress from './components/ScrollProgress';
-import Partners from "./components/Partners/index.js";
 import CompanyRegistration from "./components/CompanyRegistration/index.js";
 import TrustedClients from "./components/TrustedClients/index.js";
+
+// Import Contact directly since no more lazy loading needed
+import Contact from "./components/Contact";
 
 const Body = styled.div`
   background-color: #000000;
@@ -57,6 +60,7 @@ function App() {
 
     return () => observer.disconnect();
   }, []);
+
 
   return (
     <ThemeProvider theme={darkTheme}>

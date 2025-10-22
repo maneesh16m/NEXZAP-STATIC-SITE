@@ -12,6 +12,15 @@
     </script>
     <link rel="preload" href="https://use.typekit.net/jln8rnu.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://use.typekit.net/jln8rnu.css"></noscript>
+    
+    <!-- Critical CSS inline for faster rendering -->
+    <style>
+      .hero-container{height:100vh;width:100%;display:flex;align-items:center;justify-content:center;position:relative;margin-top:55px}.hero-background{position:absolute;top:0;left:0;width:100%;height:100%;background-color:#000000}.hero-content{position:relative;z-index:1;text-align:center;padding:50px 20px}.hero-text{color:#ffffff;margin-bottom:30px;margin-top:50px;font-family:'Good Times',sans-serif}.hero-text h1{font-size:2.5rem;font-weight:700;margin-bottom:20px;font-family:"nasalization",sans-serif}.hero-text p{font-size:1.5rem;margin-top:-12px;opacity:0.9;font-family:"nasalization",sans-serif}.homepagebtn{padding:15px 40px;border-radius:0.8em;background:#ffffff;color:#000000;border:1px solid rgba(255,255,255,0.1);cursor:pointer;font-family:inherit;font-size:1.1rem;font-weight:600;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);margin-top:30px;position:relative;overflow:hidden;z-index:1}@keyframes slideFromBottom{0%{transform:translateY(45px);opacity:0}100%{transform:translateY(0);opacity:1}}.animate-slide{opacity:0;animation:slideFromBottom 0.5s ease-out forwards}
+    </style>
+    
+    <!-- Preload critical images for better LCP -->
+    <link rel="preload" href="%PUBLIC_URL%/images/logo.png" as="image" type="image/png">
+    <link rel="preload" href="%PUBLIC_URL%/images/nexlogo.png" as="image" type="image/png">
    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
@@ -26,6 +35,169 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+    <!-- Critical content rendered immediately to prevent white screen -->
+    <div id="critical-content" style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      z-index: 9999;
+      overflow: hidden;
+    ">
+      <!-- Navbar -->
+      <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 55px;
+        background-color: #000000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        z-index: 10000;
+      ">
+        <img src="/images/nexlogo.png" alt="NexZap Logo" style="width: 50px; height: auto;" />
+        <div style="display: flex; gap: 30px;">
+          <a href="#" style="color: white; text-decoration: none; font-size: 16px;">Home</a>
+          <a href="#" style="color: white; text-decoration: none; font-size: 16px;">Products</a>
+          <a href="#" style="color: white; text-decoration: none; font-size: 16px;">Services</a>
+          <a href="#" style="color: white; text-decoration: none; font-size: 16px;">Contact</a>
+        </div>
+      </div>
+      
+      <!-- Hero Section -->
+      <div style="
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-top: 55px;
+        background-color: #000000;
+      ">
+        <div style="
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          padding: 50px 20px;
+        ">
+          <div style="
+            color: #ffffff;
+            margin-bottom: 30px;
+            margin-top: 50px;
+            font-family: 'Good Times', sans-serif;
+          ">
+            <h1 style="
+              font-size: 2.5rem;
+              font-weight: 700;
+              margin-bottom: 20px;
+              font-family: 'nasalization', sans-serif;
+              background: linear-gradient(90deg, #e0e0e0 0%, #b0b0b0 50%, #f8f8f8 100%);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+              color: transparent;
+            ">
+              Innovative Software Solutions
+            </h1>
+            <p style="
+              font-size: 1.5rem;
+              margin-top: -12px;
+              opacity: 0.9;
+              font-family: 'nasalization', sans-serif;
+              background: linear-gradient(90deg, #e0e0e0 0%, #b0b0b0 50%, #f8f8f8 100%);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+              color: transparent;
+            ">
+              Building the future of technology
+            </p>
+          </div>
+          <button style="
+            padding: 15px 40px;
+            border-radius: 0.8em;
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+          ">
+            Explore Our Products
+          </button>
+          
+          <!-- Flower Loading Placeholder -->
+          <div style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            position: relative;
+            color: white;
+            font-size: 16px;
+            opacity: 0.8;
+          ">
+            Loading flower...
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <div id="root"></div>
+    
+    <script>
+      // Hide critical content once React loads - seamless transition
+      let reactLoaded = false;
+      
+      // Check if React has loaded by looking for the root element content
+      function checkReactLoaded() {
+        const root = document.getElementById('root');
+        if (root && root.children.length > 0 && !reactLoaded) {
+          reactLoaded = true;
+          // Wait a bit more to ensure React is fully rendered
+          setTimeout(function() {
+            const criticalContent = document.getElementById('critical-content');
+            if (criticalContent) {
+              criticalContent.style.opacity = '0';
+              criticalContent.style.transition = 'opacity 0.3s ease-out';
+              setTimeout(function() {
+                criticalContent.style.display = 'none';
+              }, 300);
+            }
+          }, 200);
+        }
+      }
+      
+      // Check periodically for React load
+      const checkInterval = setInterval(checkReactLoaded, 100);
+      
+      // Stop checking after 5 seconds (fallback)
+      setTimeout(function() {
+        clearInterval(checkInterval);
+        if (!reactLoaded) {
+          const criticalContent = document.getElementById('critical-content');
+          if (criticalContent) {
+            criticalContent.style.opacity = '0';
+            criticalContent.style.transition = 'opacity 0.3s ease-out';
+            setTimeout(function() {
+              criticalContent.style.display = 'none';
+            }, 300);
+          }
+        }
+      }, 5000);
+    </script>
   </body>
 </html>
