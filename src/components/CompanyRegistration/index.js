@@ -1,35 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaBuilding, FaGlobe } from 'react-icons/fa';
-import DottedMap from 'dotted-map';
 
-// --- Dotted Map SVG as background ---
+// Toggle to enable the dotted world map background (dynamic import when true)
+const ENABLE_DOTTED_MAP = false;
 const DOT_COLOR = '#C0C0C0';
 const RED = '#E53935';
-const map = new DottedMap({
-  height: 200,
-  grid: 'vertical',
-  dotSize: 0.08,
-});
-map.addPin({
-  lat: 18.1124,
-  lng: 79.0193,
-  svgOptions: { color: RED, radius: 1.28 },
-});
-map.addPin({
-  lat: -37.8136,
-  lng: 144.9631,
-  svgOptions: { color: RED, radius: 1.28 },
-});
-const svgString = map.getSVG({
-  radius: 0.08,
-  color: DOT_COLOR,
-  shape: 'circle',
-  background: 'transparent',
-});
-const svgDataUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(svgString)}')`;
-// --- End Dotted Map SVG ---
 
 // Animation for sliding the map horizontally
 const slide = keyframes`
@@ -44,7 +21,7 @@ const MapBackground = styled.div`
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  background-image: ${svgDataUrl};
+  background-image: var(--map-bg);
   background-repeat: repeat-x;
   background-size: cover;
   background-position: left top;
@@ -204,9 +181,31 @@ const CompanyRegistration = () => {
     }
   };
 
+  const [mapCssValue, setMapCssValue] = useState('none');
+
+  useEffect(() => {
+    if (!ENABLE_DOTTED_MAP) return;
+    let isMounted = true;
+    const generate = async () => {
+      const { default: DottedMap } = await import('dotted-map');
+      const map = new DottedMap({ height: 200, grid: 'vertical', dotSize: 0.08 });
+      map.addPin({ lat: 18.1124, lng: 79.0193, svgOptions: { color: RED, radius: 1.28 } });
+      map.addPin({ lat: -37.8136, lng: 144.9631, svgOptions: { color: RED, radius: 1.28 } });
+      const svgString = map.getSVG({ radius: 0.08, color: DOT_COLOR, shape: 'circle', background: 'transparent' });
+      if (isMounted) setMapCssValue(`url('data:image/svg+xml;utf8,${encodeURIComponent(svgString)}')`);
+    };
+    // Defer to idle time if available
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => generate());
+    } else {
+      setTimeout(generate, 0);
+    }
+    return () => { isMounted = false; };
+  }, []);
+
   return (
     <Container id="registration">
-      <MapBackground />
+      <MapBackground style={{ ['--map-bg']: mapCssValue }} />
       <RegistrationGrid
         as={motion.div}
         variants={containerVariants}
