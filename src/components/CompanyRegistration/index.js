@@ -60,31 +60,6 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled(motion.h2)`
-  font-size: 40px;
-  font-weight: bold;
-  margin-bottom: 50px;
-  text-align: center;
-  color: ${({ theme }) => theme.text_primary};
-  position: relative;
-  padding-bottom: 15px;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(to right, transparent, ${({ theme }) => theme.text_secondary}, transparent);
-  }
-
-  @media (max-width: 768px) {
-    font-size: 32px;
-  }
-`;
-
 const RegistrationGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -205,7 +180,7 @@ const CompanyRegistration = () => {
 
   return (
     <Container id="registration">
-      <MapBackground style={{ ['--map-bg']: mapCssValue }} />
+      <MapBackground style={{ '--map-bg': mapCssValue }} />
       <RegistrationGrid
         as={motion.div}
         variants={containerVariants}

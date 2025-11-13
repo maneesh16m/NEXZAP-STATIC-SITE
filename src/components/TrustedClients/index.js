@@ -85,17 +85,6 @@ const ClientName = styled.h3`
   letter-spacing: 1px;
 `;
 
-const ClientLink = styled.a`
-  color: #ffffff;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    color: #667eea;
-    text-decoration: underline;
-  }
-`;
-
 const ClientDescription = styled.p`
   font-size: 1rem;
   color: #cccccc;
