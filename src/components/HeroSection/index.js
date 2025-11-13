@@ -1,10 +1,14 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useCallback, useState } from "react";
 import './hero.css';
 
 const HeroSection = () => {
   const flowerRef = useRef(null);
   const rotationRef = useRef(0);
   const lastScrollY = useRef(0);
+  const typingIndexRef = useRef(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+  const fullText = "Building the future of technology.";
 
   // Optimize scroll handler with requestAnimationFrame
   const handleScroll = useCallback(() => {
@@ -52,6 +56,43 @@ const HeroSection = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Typing effect for the description text
+  useEffect(() => {
+    typingIndexRef.current = 0;
+    setDisplayedText('');
+    let typingInterval = null;
+    const typingSpeed = 100; // milliseconds per character
+    const startDelay = 500; // delay before starting to type
+
+    const startTyping = setTimeout(() => {
+      typingInterval = setInterval(() => {
+        if (typingIndexRef.current <= fullText.length) {
+          setDisplayedText(fullText.substring(0, typingIndexRef.current));
+          typingIndexRef.current++;
+        } else {
+          clearInterval(typingInterval);
+          typingInterval = null;
+        }
+      }, typingSpeed);
+    }, startDelay);
+
+    return () => {
+      clearTimeout(startTyping);
+      if (typingInterval) {
+        clearInterval(typingInterval);
+      }
+    };
+  }, [fullText]);
+
+  // Cursor blinking effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 530); // Blink every 530ms
+
+    return () => clearInterval(cursorInterval);
+  }, []);
+
   const handleButtonClick = () => {
     const productsSection = document.getElementById('products');
     if (productsSection) {
@@ -78,7 +119,16 @@ const HeroSection = () => {
               Innovative Software Solutions
             </h1>
             <p className="btn-shine animate-slide description" style={{ wordSpacing: '8px', ...silverGradient }}>
-              Building the future of technology
+              {displayedText}
+              <span 
+                style={{ 
+                  opacity: showCursor ? 1 : 0,
+                  transition: 'opacity 0.1s ease',
+                  marginLeft: '2px'
+                }}
+              >
+                |
+              </span>
             </p>
           </div>
           <button 
