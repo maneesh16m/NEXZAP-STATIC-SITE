@@ -18,17 +18,17 @@ export const ProductsData  = [
   
   
   export const Services= [
-
     {
       id:1,
-      title: "Support Service",
-      description: "Our dedicated support team provides round-the-clock assistance for our products, ensuring you get the help you need 24/7.",
-    },
-    {
-      id:2,
       title: "Software Development",
       description: "We specialize in creating tailored software applications that meet your business's unique needs. From automation to full-scale platforms, we deliver innovative solutions that scale with your growth.",
     },
+    {
+      id:2,
+      title: "Support Service",
+      description: "Our dedicated support team provides round-the-clock assistance for our products, ensuring you get the help you need 24/7.",
+    },
+   
     
   ];
   
